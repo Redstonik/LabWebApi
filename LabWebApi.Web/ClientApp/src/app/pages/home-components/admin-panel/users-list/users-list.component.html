@@ -1,0 +1,54 @@
+<mat-card>
+  <h1>Users</h1>
+</mat-card>
+<div class="data-table">
+  <ngx-datatable class="material" [rows]="users" columnMode="force" [headerHeight]="50" [footerHeight]="50"
+    rowHeight="auto" [trackByProp]="'updated'" [scrollbarH]="true">
+    <ngx-datatable-column name="Name" prop="name">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.name}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Surname" prop="surname">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.surname}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="UserName" prop="userName">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.userName}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Email" prop="email">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.email}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Role" prop="role">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div *ngIf="row.role !== 'Admin'">
+          {{row.role | enumName}}
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="BirhDay" prop="birthDay">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.birthday | date:'yyyy-MM-dd'}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button mat-button *ngIf="!isAdminRole(row)" color="primary" (click)="editUser(row)">
+          <span class="material-symbols-outlined">edit</span>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button mat-button *ngIf="!isAdminRole(row)" color="warn" (click)="deleteUser(row.id)">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -1,0 +1,4 @@
+.scroll-container {
+    max-height: 300px; /* Змініть висоту на потрібну вам */
+    overflow-y: auto; /* Додає вертикальний скрол */
+  }

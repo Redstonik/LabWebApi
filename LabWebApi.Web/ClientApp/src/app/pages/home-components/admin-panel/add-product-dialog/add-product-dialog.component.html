@@ -1,0 +1,23 @@
+<h2 mat-dialog-title class="center-text">Add New Product</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Name" formControlName="name" required>
+      <mat-error>{{validationService.getErrorMessage(getControl("name"))}}</mat-error>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field>
+      <textarea matInput rows="5" placeholder="Description" formControlName="description" required></textarea>
+      <mat-error>{{validationService.getErrorMessage(getControl("description"))}}</mat-error>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Price" formControlName="price" required>
+      <mat-error>{{validationService.getErrorMessage(getControl("price"))}}</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="addProduct()" [disabled]="!formGroup.valid">Add</button>
+</mat-dialog-actions>

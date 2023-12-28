@@ -1,0 +1,26 @@
+<div *ngIf="comments.length > 0" class="scroll-container">
+  <h3>Коментарі:</h3>
+  <ul class="comment-list">
+    <li *ngFor="let comment of comments let i = index" class="comment-item">
+      <mat-card>
+        <mat-card-content>
+          <p>{{ comment.text }}</p>
+          <p>Created by {{ comment.user.userName }}</p>
+          <!-- Додайте інші відображення властивостей коментаря за необхідності -->
+        </mat-card-content>
+        <button *ngIf="IsOwnerOrAdmin(currentUser, i)" mat-raised-button color="primary" (click)="deleteComment(comment.id, i)">Видалити коментар</button>
+      </mat-card>
+    </li>
+  </ul>
+</div>
+<div *ngIf="comments.length === 0">
+  <p>Ще немає коментарів.</p>
+</div>
+<!-- Кнопка для додавання коментаря -->
+<form (ngSubmit)="addComment()" #commentForm="ngForm">
+  <mat-form-field>
+    <textarea matInput placeholder="Введіть ваш коментар" name="commentText" [(ngModel)]="newCommentText" required></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Додати коментар</button>
+</form>
+  
