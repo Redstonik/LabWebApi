@@ -8,10 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/dist";
-});
 
 //Infrastructure lab2
 builder.Services.AddRepositories();
@@ -56,9 +52,5 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "ClientApp";
-    spa.UseAngularCliServer(npmScript: "start");
-});
+
 app.Run();
